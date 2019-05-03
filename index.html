@@ -14,11 +14,58 @@
 <body>
     <div class = "container">
         <div id = "app"> 
-            <div class = "card-deck" id = "cardDeck">        
+            <div class = "card-deck" id = "cardDeck">
             </div>
-            <tsummary>
-                <div id = "ticket-summary"></div>
-            </tsummary>
+
+            <h2>{{ticketsummary}}<h2>
+            <table class="table table-striped">
+                <template>
+
+                </template>
+            </table>
+        </div>
+
+        <div id = 'cart'>   
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Adult Tickets</th>
+                    <th scope="col">Children's Tickets</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Button</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Mark</td>
+                    <td><button v-on:click="createcart" class="btn btn-success">Remove</button></td>
+                    </tr> 
+                    <tr><td colspan="5"></td></tr>
+                    <tr>
+                    <td td colspan="2"></td>>
+                    <td>Adult Subtotal</td>
+                    <td>Money</td>
+                    <td></td>
+                    </tr> 
+                    <tr>
+                    <td td colspan="2"></td>>
+                    <td>Children Subtotal</td>
+                    <td>Money</td>
+                    <td></td>
+                    </tr>
+                    <tr>
+                    <td td colspan="2"></td>>
+                    <td>Total</td>
+                    <td>Money</td>
+                    <td></td>
+                    </tr> 
+                </tbody>
+            </table>
+
         </div>
 
     </div>

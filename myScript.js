@@ -1,4 +1,6 @@
-const movieRange = 3;
+var movieRange = 3;
+var item =0;
+var movie = [];
 var tkbox =false;
 
 $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4b04e99f7d8ca059c8d", function (jsObject) {
@@ -10,10 +12,8 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         overview = jsObject.results[i].overview ;
         document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '"></acard>';
     }
-    console.log("Start LIST");
+    // VUE////////////////////////////////////////////////////////////////////////////////
 
-    // VUE
-    console.log("Start VUE");
     Vue.component('acard', {
         props: ['name', 'img', 'ov'],
         data: function () {
@@ -26,41 +26,32 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                     <div class="card" style="width: 18rem;">
                         <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
                         <div class="card-body">
-                            <button class="btn btn-primary tkSummary">Child Ticket</button> <button class="btn btn-primary">Adult Ticket</button>
+                            <button >Child Ticket</button> 
+                            <button v-on:click="createcart" class="btn btn-primary" >Adult Ticket</button>
                             <p></p>
                             <h5 class="card-title">{{name}}</h5>
                             <p class="card-text">{{ov}}</p>
-
                         </div>
                     </div>
                 `
     })
-
-    Vue.component('tsummary', {
-        props: ['name', 'adult', 'ov'],
-        data: function () {
-            return {
-                count: 0
-            }
-        },
-
-        template: `
-                    
-                `
-    })
-    
-
     var app = new Vue({
         el: "#app",
         data: {
-            message: "",
+            ticketsummary:"",
+            movierange:0,
         },
+        methods:{
+            createcart: function(){
+                this.ticketsummary = 'Ticket Summary'
+        },
+    }})
 
 
-    })
     console.log("END VUE");
     // END VUE
-})
+})//END JSON
+
 
 
 // const movieRange = 3;
