@@ -14,13 +14,13 @@
 <body>
     <div class = "container">
         <div id = "app"> 
-            <div class = "card-deck" id = "cardDeck">
+            <div class = "row">
+                <div class = "card-deck" id = "cardDeck">
+                </div>
             </div>
-            <h2>{{ticketsummary}}<h2>
-            <table class="table table-striped">
-                <template>
-                </template>
-            </table>
+            
+            <button v-on:click="createcart" class="btn btn-primary" >Adult Ticket</button>
+            <h2>{{ticketsummary}}</h2>
         </div>
 <!-- //////////////////////////////////// -->
         <div id = 'cart'>   

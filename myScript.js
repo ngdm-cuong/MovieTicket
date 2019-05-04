@@ -15,35 +15,44 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
     // VUE////////////////////////////////////////////////////////////////////////////////
 
     Vue.component('acard', {
-        props: ['name', 'img', 'ov'],
-        data: function () {
+        props: ['app','name', 'img', 'ov'],
+        data:function () {
             return {
-                count: 0
+                ticketsummary: 'Ticket Summary'
             }
-        },
-        methods:{
-            createcart: function(){
-                this.ticketsummary = 'Ticket Summary'
             },
-        },
+        // methods:{
+        //     createcart: function(){
+        //         this.$emit(change);
+        //     }
+        // },
         template: `
-                    <div class="card" style="width: 18rem;">
-                        <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
-                        <div class="card-body">
-                            <button >Child Ticket</button> 
-                            <button v-on:click="createcart" class="btn btn-primary" >Adult Ticket</button>
-                            <p></p>
-                            <h5 class="card-title">{{name}}</h5>
-                            <p class="card-text">{{ov}}</p>
+                    <div class="col-sm">
+                        <div class="card" style="width: 18rem;">
+                            <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
+                            <div class="card-body">
+                                <button >Child Ticket</button> 
+                                <button v-on:click="createcart" class="btn btn-primary" >Adult Ticket</button>
+                                <p></p>
+                                <h5 class="card-title">{{name}}</h5>
+                                <p class="card-text">{{ov}}</p>
+                            </div>
                         </div>
                     </div>
                 `
     })
     var app = new Vue({
         el: "#app",
+        // template:'<acard : app="" > </acard>',
         data: {
+            message:"",
             ticketsummary:"",
             movierange:0,
+        },
+        methods:{
+            createcart: function(){
+                this.ticketsummary = 'Ticket Summary'
+            }
         },
         })
 
