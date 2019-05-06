@@ -10,29 +10,29 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         title = jsObject.results[i].original_title ;
         poster = jsObject.results[i].poster_path ;
         overview = jsObject.results[i].overview ;
-        document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '"></acard>';
+        document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '" v-on:createcart></acard>';
     }
     // VUE////////////////////////////////////////////////////////////////////////////////
 
     Vue.component('acard', {
-        props: ['app','name', 'img', 'ov'],
+        props: ['name', 'img', 'ov'],
         data:function () {
             return {
-                ticketsummary: 'Ticket Summary'
+              
             }
-            },
-        // methods:{
-        //     createcart: function(){
-        //         this.$emit(change);
-        //     }
-        // },
+        },
+        methods:{
+            createcart: function(){
+                this.ticketsummary = 'Ticket Summary'
+            }
+        },
         template: `
                     <div class="col-sm">
                         <div class="card" style="width: 18rem;">
                             <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
                             <div class="card-body">
                                 <button >Child Ticket</button> 
-                                <button v-on:click="createcart" class="btn btn-primary" >Adult Ticket</button>
+                                <button v-on:click="$emit('createcart')" class="btn btn-primary" >Adult Ticket</button>
                                 <p></p>
                                 <h5 class="card-title">{{name}}</h5>
                                 <p class="card-text">{{ov}}</p>
@@ -41,9 +41,8 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                     </div>
                 `
     })
-    var app = new Vue({
+    var app1 = new Vue({
         el: "#app",
-        // template:'<acard : app="" > </acard>',
         data: {
             message:"",
             ticketsummary:"",
@@ -52,7 +51,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         methods:{
             createcart: function(){
                 this.ticketsummary = 'Ticket Summary'
-            }
+            }   
         },
         })
 
