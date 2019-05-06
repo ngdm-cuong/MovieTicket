@@ -10,7 +10,9 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         title = jsObject.results[i].original_title ;
         poster = jsObject.results[i].poster_path ;
         overview = jsObject.results[i].overview ;
-        document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '" v-on:createcart></acard>';
+        //document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '" v-on:createcart></acard>';
+        document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '"></acard>';
+
     }
     // VUE////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +25,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         },
         methods:{
             createcart: function(){
-                this.ticketsummary = 'Ticket Summary'
+                this.$parent.createcart()
             }
         },
         template: `
@@ -32,7 +34,10 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                             <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
                             <div class="card-body">
                                 <button >Child Ticket</button> 
-                                <button v-on:click="$emit('createcart')" class="btn btn-primary" >Adult Ticket</button>
+                                <button  
+                                class="btn btn-primary" 
+                                v-on:click="createcart"
+                                >Adult Ticket</button>
                                 <p></p>
                                 <h5 class="card-title">{{name}}</h5>
                                 <p class="card-text">{{ov}}</p>
@@ -47,6 +52,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             message:"",
             ticketsummary:"",
             movierange:0,
+            
         },
         methods:{
             createcart: function(){
