@@ -33,10 +33,13 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                         <div class="card" style="width: 18rem;">
                             <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
                             <div class="card-body">
-                                <button >Child Ticket</button> 
+                                <button
+                                class="btn btn-primary" 
+                                v-on:click="createcart" 
+                                 >Child Ticket</button> 
                                 <button  
                                 class="btn btn-primary" 
-                                v-on:click="createcart"
+                                v-on:click="createcart" 
                                 >Adult Ticket</button>
                                 <p></p>
                                 <h5 class="card-title">{{name}}</h5>
@@ -44,19 +47,60 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                             </div>
                         </div>
                     </div>
+                    <div class="table table-striped" id = 'cart' >
+                    </div>
                 `
     })
+
     var app1 = new Vue({
         el: "#app",
         data: {
             message:"",
-            ticketsummary:"",
-            movierange:0,
-            
+            ticketsummary:"",   
         },
         methods:{
             createcart: function(){
-                this.ticketsummary = 'Ticket Summary'
+                this.ticketsummary = 'Ticket Summary',
+                this.$refs.myDiv = 
+                    '<table class="table table-striped">'
+                        '<thead>'
+                            '<tr>'
+                            '<th scope="col">Movie</th>'
+                            '<th scope="col">Adult Tickets</th>'
+                            '<th scope="col">Childrens Tickets</th>'
+                            '<th scope="col">Subtotal</th>'
+                            '<th scope="col">Button</th>'
+                            '</tr>'
+                        '</thead>'
+                        '<tbody>'
+                            '<tr>'
+                                '<td>1</td>'
+                                '<td>Mark</td>'
+                                '<td>Otto</td>'
+                                '<td>Mark</td>'
+                                '<td><button class="btn btn-success">Remove</button></td>'
+                            '</tr>'
+                            '<tr><td colspan="5"></td></tr>'
+                            '<tr>'
+                                '<td colspan="2"></td>'
+                                '<td>Adult Subtotal</td>'
+                                '<td>Money</td>'
+                                '<td></td>'
+                            '</tr> '
+                            '<tr>'
+                                '<td colspan="2"></td>'
+                                '<td>Children Subtotal</td>'
+                                '<td>Money</td>'
+                                '<td></td>'
+                            '</tr>'
+                            '<tr>'
+                                '<td colspan="2"></td>'
+                                '<td>Total</td>'
+                                '<td>Money</td>'
+                                '<td></td>'
+                            '</tr>' 
+                        '</tbody>'
+                    '</table>'
             }   
         },
         })
