@@ -27,13 +27,13 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             }
         },
         methods:{
-            createcartchild: function(){
-                this.$parent.createcart();
+            createcartchild: function(movietitle){
+                this.$parent.createcart(movietitle);
                 console.log(this.countchild);
 
             },
-            createcartadult: function(){
-                this.$parent.createcart();
+            createcartadult: function(movietitle){
+                this.$parent.createcart(movietitle);
                 console.log(this.countadult);
             }
             
@@ -80,7 +80,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         methods:{
             createcart: function(moviename){
                 this.ticketsummary = 'Ticket Summary';
-
+                console.log(moviename);
             }   
         },
         })
