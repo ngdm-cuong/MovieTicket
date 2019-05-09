@@ -16,6 +16,10 @@
         <div id = "app"> 
             <div class = "row">
                 <div class = "card-deck" id = "cardDeck">
+                    <div v-for="movie in movies">
+                           <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview"></acard>
+
+                    </div>
                 </div>
             </div>
             <h2>{{ticketsummary}}</h2>

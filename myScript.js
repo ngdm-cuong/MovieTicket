@@ -1,6 +1,6 @@
 var movieRange = 3;
 var item =0;
-var movieArray=[]; 
+var movieArray=[{}]; 
 var tkbox =false;
 
 $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4b04e99f7d8ca059c8d", function (jsObject) {
@@ -8,11 +8,12 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
     // LIST
     for (let i = 0; i < movieRange; i++) {
         title = jsObject.results[i].original_title ;
-        poster = jsObject.results[i].poster_path ;
+        poster = 'https://image.tmdb.org/t/p/w500'+jsObject.results[i].poster_path ;
         overview = jsObject.results[i].overview ;
-        movieArray[i] =jsObject.results[i].original_title;
-        //document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '" v-on:createcart></acard>';
-        document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = "https://image.tmdb.org/t/p/w500' + poster + '" ov = " ' + overview + '"></acard>';
+
+        movieArray[i]= {'title':title, 'poster': poster, 'overview':overview};
+
+        // document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = " ' + poster + '" ov = " ' + overview + '"></acard>';
 
     }
     // VUE////////////////////////////////////////////////////////////////////////////////
@@ -70,17 +71,16 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         data: {
             message:"",
             ticketsummary:"",
-            movie: [
-                {name:'default', adult: 0, child: 0}
-            ],
-                
+            movies: movieArray,
+            
+
             count:0
         },
 
         methods:{
             createcart: function(moviename){
                 this.ticketsummary = 'Ticket Summary';
-                this.movie[0].name =name;
+
             }   
         },
         })
