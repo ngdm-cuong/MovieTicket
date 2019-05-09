@@ -15,26 +15,26 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
 
         // document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = " ' + poster + '" ov = " ' + overview + '"></acard>';
 
-    }
+    } // End For loops
     // VUE////////////////////////////////////////////////////////////////////////////////
 
     Vue.component('acard', {
         props: ['name', 'img', 'ov'],
         data:function () {
             return {
-                countchild : 0,
-                countadult : 0
+                countchild : 1,
+                countadult : 1
             }
         },
         methods:{
             createcartchild: function(movietitle){
                 this.$parent.createcart(movietitle);
-                console.log(this.countchild);
+                console.log('Child: '+this.countchild);
 
             },
             createcartadult: function(movietitle){
                 this.$parent.createcart(movietitle);
-                console.log(this.countadult);
+                console.log('Adult: '+this.countadult);
             }
             
             
@@ -64,7 +64,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                         </div>
                     </div>
                 `
-    })
+    }) //END VUE.Component
 
     var app1 = new Vue({
         el: "#app",
@@ -72,7 +72,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             message:"",
             ticketsummary:"",
             movies: movieArray,
-            
+            movieCart:[],
 
             count:0
         },
@@ -83,7 +83,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 console.log(moviename);
             }   
         },
-        })
+        })// END Vue root
 
 
     console.log('END VUE');
