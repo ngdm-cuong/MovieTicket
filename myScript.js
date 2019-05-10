@@ -94,17 +94,19 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             createcart: function(aaa){
                 this.ticketsummary = 'Ticket Summary';
                 this.cartItem=aaa;
+                console.log(this.cartArray.length);
                 for (let i = 0; i<= this.cartArray.length; i++)
                 {
-                    if (this.cartArray.itemName ==  aaa.name)
+                    if (this.cartArrayp[i].itemName ==  this.cartItem.itemName)
                     {
-                        this.cartArray[this.count] = aaa;
-                        console.log(this.cartArray[this.count].itemName)
-                        this.count++;
+                        this.cartArray[i] = this.cartItem;
+                        console.log(this.cartArray[i].itemName)
+                        
                     }
                     else{
-                        this.cartArray.push(aaa)
-                        this.count++;
+                        this.cartArray.push(this.cartItem)
+                        console.log(this.cartArray[i].itemName)
+                        
                     }
 
                 }
