@@ -35,7 +35,7 @@
                         </thead>
 
                         <tbody>
-                            <tr v-for= " data in cartArray">
+                            <tr v-for= " (data, index ) in cartArray">
                                 <!-- <div v-for=" (movie, index) in movies "> -->
                                         <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
                                         <template>
@@ -43,7 +43,7 @@
                                                 <td>{{data.countchild}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
                                                 <td>{{data.countadult}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
                                                 <td></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm">Remove</button></td>
+                                                <td><button @click ="remove( index)" type="button" class="btn btn-primary btn-sm">Remove</button></td>
                                         </template>
                                         
                                 <!-- <div> -->

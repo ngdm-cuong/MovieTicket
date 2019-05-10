@@ -110,15 +110,17 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                     } 
                     if (counter ==0 )
                     {
-                        this.cartArray.push(this.cartItem)
-                      
+                        this.cartArray.push(this.cartItem)                      
                     }
-
-                }
-               
-                
-
+                }                            
                 // console.log(moviename);
+            },
+            remove: function (index){
+                this.cartArray[index].child = 0;
+                this.cartArray[index].adult = 0;
+
+                this.cartArray.splice(index,1);
+                console.log('index: '  +index);
             }   
         },
         })// END Vue root
