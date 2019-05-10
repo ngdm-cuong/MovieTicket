@@ -42,13 +42,27 @@
                                     <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
                                     <template>
                                             <td>{{data.itemName}}</td>
-                                            <td>{{data.countchild}}</td>
-                                            <td>{{data.countadult}}</td>
+                                            <td>{{data.countchild}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
+                                            <td>{{data.countadult}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
                                             <td></td>
+                                            <td><button type="button" class="btn btn-primary btn-sm">Remove</button></td>
                                     </template>
+                                    
                             <!-- <div> -->
                             
                         </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>Children Subtotal</td>
+                            <td>Money</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>Total</td>
+                            <td>Money</td>
+                            <td></td>
+                        </tr> 
                     </tbody>
                     
             </table>

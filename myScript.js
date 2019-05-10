@@ -104,7 +104,6 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                         {   
                             counter=1;
                             this.cartArray[i] = this.cartItem;
-                            this.counter =0;
                             break;                          
                         }
                         else counter = 0;                                          
@@ -114,10 +113,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                         this.cartArray.push(this.cartItem)
                       
                     }
-                  
-                     
-                    
-       
+
                 }
                
                 
