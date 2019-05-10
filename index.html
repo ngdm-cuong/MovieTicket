@@ -37,13 +37,13 @@
                     </thead>
 
                     <tbody>
-                        <tr>
+                        <tr v-for= " data in cartArray">
                             <!-- <div v-for=" (movie, index) in movies "> -->
                                     <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
                                     <template>
-                                            <td>{{cartItem.itemName}}</td>
-                                            <td>{{cartItem.countchild}}</td>
-                                            <td>{{cartItem.countadult}}</td>
+                                            <td>{{data.itemName}}</td>
+                                            <td>{{data.countchild}}</td>
+                                            <td>{{data.countadult}}</td>
                                             <td></td>
                                     </template>
                             <!-- <div> -->

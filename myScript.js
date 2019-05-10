@@ -37,7 +37,6 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 // this.cartItem.itemName = movietitle;
                 // this.cartItem.countchild = countchild;
                 // this.cartItem.countadult = countadult;
-                console.log(countchild);
                 console.log(this.cartItem.itemName+' Count Child: ' +this.cartItem.countchild);
                 console.log(this.cartItem.itemName+' Count Adult: ' +this.cartItem.countadult);
 
@@ -94,20 +93,30 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             createcart: function(aaa){
                 this.ticketsummary = 'Ticket Summary';
                 this.cartItem=aaa;
-                console.log(this.cartArray.length);
-                for (let i = 0; i<= this.cartArray.length; i++)
+                if ( this.cartArray.length == 0 )
                 {
-                    if (this.cartArrayp[i].itemName ==  this.cartItem.itemName)
+                    this.cartArray.push(this.cartItem)
+                }
+                else 
+                {
+                    for (let i = 0; i<= this.cartArray.length; i++)
                     {
-                        this.cartArray[i] = this.cartItem;
-                        console.log(this.cartArray[i].itemName)
-                        
-                    }
-                    else{
-                        this.cartArray.push(this.cartItem)
-                        console.log(this.cartArray[i].itemName)
-                        
-                    }
+                       
+                            
+                        if (this.cartArray[i].itemName ==  this.cartItem.itemName)
+                        {
+                            this.cartArray[i] = this.cartItem;
+                            console.log(this.cartArray[i].itemName);
+                            break;
+                        }
+                        else{
+                            this.cartArray.push(this.cartItem)
+                            console.log(this.cartArray[i].itemName);
+                            break;
+                            
+                        }
+                }
+               
 
                 }
                
