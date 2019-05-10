@@ -34,9 +34,6 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         methods:{
             createcart1: function(movietitle,countchild,countadult){
                 this.$parent.createcart(this.cartItem);
-                // this.cartItem.itemName = movietitle;
-                // this.cartItem.countchild = countchild;
-                // this.cartItem.countadult = countadult;
                 console.log(this.cartItem.itemName+' Count Child: ' +this.cartItem.countchild);
                 console.log(this.cartItem.itemName+' Count Adult: ' +this.cartItem.countadult);
 
@@ -100,24 +97,17 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 else 
                 {
                     for (let i = 0; i<= this.cartArray.length; i++)
-                    {
-                       
-                            
+                    {                                                  
                         if (this.cartArray[i].itemName ==  this.cartItem.itemName)
                         {
                             this.cartArray[i] = this.cartItem;
-                            console.log(this.cartArray[i].itemName);
                             break;
                         }
                         else{
                             this.cartArray.push(this.cartItem)
-                            console.log(this.cartArray[i].itemName);
-                            break;
-                            
+                            break;                           
                         }
-                }
-               
-
+                    }               
                 }
                
                 
