@@ -86,7 +86,6 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             movies: movieArray,
             cartItem:{'itemName':'default',child:0,adult:0},
             cartArray:[],
-            
 
             count:0
         }, // End vuedata
@@ -95,6 +94,11 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             createcart: function(aaa){
                 this.ticketsummary = 'Ticket Summary';
                 this.cartItem=aaa;
+                
+                this.cartArray[this.count] = aaa;
+                console.log(this.cartArray[this.count].itemName)
+                this.count++;
+                
 
                 // console.log(moviename);
             }   
