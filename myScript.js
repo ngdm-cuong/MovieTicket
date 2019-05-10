@@ -83,31 +83,41 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             cartItem:{'itemName':'default',child:0,adult:0},
             cartArray:[],
 
-            count:0
+            counter:0
         }, // End vuedata
 
         methods:{
             createcart: function(aaa){
                 this.ticketsummary = 'Ticket Summary';
                 this.cartItem=aaa;
+                
                 if ( this.cartArray.length == 0 )
                 {
                     this.cartArray.push(this.cartItem)
                 }
                 else 
+                    
                 {
-                    for (let i = 0; i<= this.cartArray.length; i++)
+                    for (let i = 0; i< this.cartArray.length; i++)
                     {                                                  
                         if (this.cartArray[i].itemName ==  this.cartItem.itemName)
-                        {
+                        {   
+                            counter=1;
                             this.cartArray[i] = this.cartItem;
-                            break;
+                            this.counter =0;
+                            break;                          
                         }
-                        else{
-                            this.cartArray.push(this.cartItem)
-                            break;                           
-                        }
-                    }               
+                        else counter = 0;                                          
+                    } 
+                    if (counter ==0 )
+                    {
+                        this.cartArray.push(this.cartItem)
+                      
+                    }
+                  
+                     
+                    
+       
                 }
                
                 
