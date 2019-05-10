@@ -18,54 +18,54 @@
                 <div class = "card-deck" id = "cardDeck">
                     <div v-for="(movie, index) in movies">
                            <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview" ></acard>
-
-
                     </div>
-                </div>
-                <template></template>
+                </div>    
             </div>
-            <h2>{{ticketsummary}}</h2>
-            <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col">Movie</th>
-                        <th scope="col">Children's Tickets</th>
-                        <th scope="col">Adult Tickets</th>
-                        <th scope="col">Subtotal</th>   
-                        <th scope="col">Button</th>
-                        </tr>
-                    </thead>
+            <template v-if= "cartArray.length !==0 ">
+                <h2>{{ticketsummary}}</h2>
+                <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">Movie</th>
+                            <th scope="col">Children's Tickets</th>
+                            <th scope="col">Adult Tickets</th>
+                            <th scope="col">Subtotal</th>   
+                            <th scope="col">Button</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr v-for= " data in cartArray">
-                            <!-- <div v-for=" (movie, index) in movies "> -->
-                                    <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
-                                    <template>
-                                            <td>{{data.itemName}}</td>
-                                            <td>{{data.countchild}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
-                                            <td>{{data.countadult}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
-                                            <td></td>
-                                            <td><button type="button" class="btn btn-primary btn-sm">Remove</button></td>
-                                    </template>
-                                    
-                            <!-- <div> -->
-                            
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td>Children Subtotal</td>
-                            <td>Money</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td>Total</td>
-                            <td>Money</td>
-                            <td></td>
-                        </tr> 
-                    </tbody>
-                    
-            </table>
+                        <tbody>
+                            <tr v-for= " data in cartArray">
+                                <!-- <div v-for=" (movie, index) in movies "> -->
+                                        <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
+                                        <template>
+                                                <td>{{data.itemName}}</td>
+                                                <td>{{data.countchild}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td>{{data.countadult}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td></td>
+                                                <td><button type="button" class="btn btn-primary btn-sm">Remove</button></td>
+                                        </template>
+                                        
+                                <!-- <div> -->
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>Children Subtotal</td>
+                                <td>Money</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>Total</td>
+                                <td>Money</td>
+                                <td></td>
+                            </tr> 
+                        </tbody>
+                        
+                </table>
+            </template>
+            
 
 
             
