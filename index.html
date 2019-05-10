@@ -16,12 +16,43 @@
         <div id = "app"> 
             <div class = "row">
                 <div class = "card-deck" id = "cardDeck">
-                    <div v-for="movie in movies">
-                           <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview"></acard>
+                    <div v-for="(movie, index) in movies">
+                           <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview" ></acard>
+
+
                     </div>
                 </div>
+                <template></template>
             </div>
             <h2>{{ticketsummary}}</h2>
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Children's Tickets</th>
+                        <th scope="col">Adult Tickets</th>
+                        <th scope="col">Subtotal</th>   
+                        <th scope="col">Button</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <!-- <div v-for=" (movie, index) in movies "> -->
+                                    <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
+                                    <template>
+                                            <td>{{cartItem.itemName}}</td>
+                                            <td>{{cartItem.countchild}}</td>
+                                            <td>{{cartItem.countadult}}</td>
+                                            <td></td>
+                                    </template>
+                            <!-- <div> -->
+                            
+                        </tr>
+                    </tbody>
+                    
+            </table>
+
 
             
         </div>
@@ -31,9 +62,9 @@
                 <thead>
                     <tr>
                     <th scope="col">Movie</th>
-                    <th scope="col">Adult Tickets</th>
                     <th scope="col">Children's Tickets</th>
-                    <th scope="col">Subtotal</th>
+                    <th scope="col">Adult Tickets</th>
+                    <th scope="col">Subtotal</th>   
                     <th scope="col">Button</th>
                     </tr>
                 </thead>

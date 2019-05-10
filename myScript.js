@@ -1,7 +1,8 @@
 var movieRange = 3;
-var item =0;
-var movieArray=[{}]; 
+
+var movieArray=[]; 
 var tkbox =false;
+var movieCart = [[[]]];
 
 $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4b04e99f7d8ca059c8d", function (jsObject) {
 
@@ -11,35 +12,46 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         poster = 'https://image.tmdb.org/t/p/w500'+jsObject.results[i].poster_path ;
         overview = jsObject.results[i].overview ;
 
-        movieArray[i]= {'title':title, 'poster': poster, 'overview':overview};
+        movieArray[i]= {'title':title, 'poster': poster, 'overview':overview, 'child':0, 'adult':0};
 
         // document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = " ' + poster + '" ov = " ' + overview + '"></acard>';
 
     } // End For loops
-    // VUE////////////////////////////////////////////////////////////////////////////////
+
 
     Vue.component('acard', {
         props: ['name', 'img', 'ov'],
         data:function () {
             return {
-                countchild : 1,
-                countadult : 1
+                countchild : 0,
+                countadult : 0,
+                created: 0,
+                cartItem:{'itemName':'default',countchild:0,  countadult : 0},
+                cart:movieCart,
+
             }
         },
         methods:{
-            createcartchild: function(movietitle){
-                this.$parent.createcart(movietitle);
-                console.log('Child: '+this.countchild);
+            createcart1: function(movietitle,countchild,countadult){
+                this.$parent.createcart(this.cartItem);
+                // this.cartItem.itemName = movietitle;
+                // this.cartItem.countchild = countchild;
+                // this.cartItem.countadult = countadult;
+                console.log(countchild);
+                console.log(this.cartItem.itemName+' Count Child: ' +this.cartItem.countchild);
+                console.log(this.cartItem.itemName+' Count Adult: ' +this.cartItem.countadult);
 
             },
-            createcartadult: function(movietitle){
-                this.$parent.createcart(movietitle);
-                console.log('Adult: '+this.countadult);
-            }
+            // createcartadult: function(movietitle,countadult){
+            //     this.$parent.createcart(movietitle,countadult);
+            //     this.$parent.cartItem = {'itemName':movietitle, child:countadult};
+
+            //     console.log('Adult: '+this.countadult);
+            // }
             
             
             
-        },
+        }, // End vue component method
         template: `<div>
                         <div class="col-sm">
                             <div class="card" style="width: 18rem;">
@@ -47,15 +59,15 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                                 <div class="card-body">
                                     <button
                                     class="btn btn-primary" 
-                                    v-on:click="createcartchild(name); countchild++" 
+                                    @click=" cartItem.itemName = name; cartItem.countchild = countchild++; cartItem.countadult = countadult; createcart1(name,countchild,0);created = 1" 
                                     >Child Ticket</button>  
 
                                     <button  
                                     class="btn btn-primary" 
-                                    v-on:click="createcartadult(name); countadult++" 
+                                    @click=" cartItem.itemName = name; cartItem.countchild = countchild; cartItem.countadult = countadult++;createcart1(name,0,countadult);created = 1" 
                                     >Adult Ticket</button>
                                     <p></p>
-                                    <h5 class="card-title">{{name}}</h5>
+                                    <h5 class="card-title"> {{name}}</h5>
                                     <p class="card-text">{{ov}}</p>
                                 </div>
                             </div>
@@ -72,20 +84,24 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             message:"",
             ticketsummary:"",
             movies: movieArray,
-            movieCart:[],
+            cartItem:{'itemName':'default',child:0,adult:0},
+            cartArray:[],
+            
 
             count:0
-        },
+        }, // End vuedata
 
         methods:{
-            createcart: function(moviename){
+            createcart: function(aaa){
                 this.ticketsummary = 'Ticket Summary';
-                console.log(moviename);
+                this.cartItem=aaa;
+
+                // console.log(moviename);
             }   
         },
         })// END Vue root
 
 
     console.log('END VUE');
-    // END VUE
+
     })
