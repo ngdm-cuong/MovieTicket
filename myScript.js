@@ -59,12 +59,12 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                                 <div class="card-body">
                                     <button
                                     class="btn btn-primary" 
-                                    @click=" cartItem.itemName = name; cartItem.countchild = countchild++; cartItem.countadult = countadult; createcart1(name,countchild,0);created = 1" 
+                                    @click=" cartItem.itemName = name; createcart1(name,cartItem.countchild++,0); created = 1" 
                                     >Child Ticket</button>  
 
                                     <button  
                                     class="btn btn-primary" 
-                                    @click=" cartItem.itemName = name; cartItem.countchild = countchild; cartItem.countadult = countadult++;createcart1(name,0,countadult);created = 1" 
+                                    @click=" cartItem.itemName = name; createcart1(name,0,cartItem.countadult++); created = 1" 
                                     >Adult Ticket</button>
                                     <p></p>
                                     <h5 class="card-title"> {{name}}</h5>
