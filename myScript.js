@@ -1,18 +1,18 @@
 var movieRange = 3;
 
-var movieArray=[]; 
-var tkbox =false;
+var movieArray = [];
+var tkbox = false;
 var movieCart = [[[]]];
 
 $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4b04e99f7d8ca059c8d", function (jsObject) {
 
     // LIST
     for (let i = 0; i < movieRange; i++) {
-        title = jsObject.results[i].original_title ;
-        poster = 'https://image.tmdb.org/t/p/w500'+jsObject.results[i].poster_path ;
-        overview = jsObject.results[i].overview ;
+        title = jsObject.results[i].original_title;
+        poster = 'https://image.tmdb.org/t/p/w500' + jsObject.results[i].poster_path;
+        overview = jsObject.results[i].overview;
 
-        movieArray[i]= {'title':title, 'poster': poster, 'overview':overview, 'child':0, 'adult':0};
+        movieArray[i] = { 'title': title, 'poster': poster, 'overview': overview, 'child': 0, 'adult': 0 };
 
         // document.getElementById('cardDeck').innerHTML += '<acard name="' + title + '"img = " ' + poster + '" ov = " ' + overview + '"></acard>';
 
@@ -21,21 +21,21 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
 
     Vue.component('acard', {
         props: ['name', 'img', 'ov'],
-        data:function () {
+        data: function () {
             return {
-                countchild : 0,
-                countadult : 0,
+                countchild: 0,
+                countadult: 0,
                 created: 0,
-                cartItem:{'itemName':'default',countchild:0,  countadult : 0},
-                cart:movieCart,
+                cartItem: { 'itemName': 'default', countchild: 0, countadult: 0 },
+                cart: movieCart,
 
             }
         },
-        methods:{
-            createcart1: function(movietitle,countchild,countadult){
+        methods: {
+            createcart1: function (movietitle, countchild, countadult) {
                 this.$parent.createcart(this.cartItem);
-                console.log(this.cartItem.itemName+' Count Child: ' +this.cartItem.countchild);
-                console.log(this.cartItem.itemName+' Count Adult: ' +this.cartItem.countadult);
+                console.log(this.cartItem.itemName + ' Count Child: ' + this.cartItem.countchild);
+                console.log(this.cartItem.itemName + ' Count Adult: ' + this.cartItem.countadult);
 
             }
         }, // End vue component method
@@ -64,101 +64,89 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
     var app1 = new Vue({
         el: "#app",
         data: {
-            message:"",
-            ticketsummary:"",
+            message: "",
+            ticketsummary: "",
             movies: movieArray,
-            cartItem:{'itemName':'default',child:0,adult:0},
-            cartArray:[],
-            subtotal:[],
-            priceAdult:6.99,
-            priceChild:3.99,
+            cartItem: { 'itemName': 'default', child: 0, adult: 0 },
+            cartArray: [],
+            subtotal: [],
+            priceAdult: 6.99,
+            priceChild: 3.99,
 
-            
+
         }, // End vuedata
 
-        methods:{
-            createcart: function(aaa){
+        methods: {
+            createcart: function (aaa) {
                 this.ticketsummary = 'Ticket Summary';
-                this.cartItem=aaa;
-                
-                if ( this.cartArray.length == 0 )
-                {
+                this.cartItem = aaa;
+
+                if (this.cartArray.length == 0) {
                     this.cartArray.push(this.cartItem)
                 }
-                else 
-                    
-                {
-                    for (let i = 0; i< this.cartArray.length; i++)
-                    {                                                  
-                        if (this.cartArray[i].itemName ==  this.cartItem.itemName)
-                        {   
-                            counter=1;
+                else {
+                    for (let i = 0; i < this.cartArray.length; i++) {
+                        if (this.cartArray[i].itemName == this.cartItem.itemName) {
+                            counter = 1;
                             this.cartArray[i] = this.cartItem;
-                            break;                          
+                            break;
                         }
-                        else counter = 0;                                          
-                    } 
-                    if (counter ==0 )
-                    {
-                        this.cartArray.push(this.cartItem)                      
+                        else counter = 0;
                     }
-                }                            
+                    if (counter == 0) {
+                        this.cartArray.push(this.cartItem)
+                    }
+                }
                 // console.log(moviename);
             },
-            remove: function (index){
+            remove: function (index) {
                 this.cartArray[index].countchild = 0;
                 this.cartArray[index].countadult = 0;
 
-                this.cartArray.splice(index,1);
-                console.log('index: '  +index);
+                this.cartArray.splice(index, 1);
+                console.log('index: ' + index);
             },
-            decrementChild: function (index){
-                if (this.cartArray[index].countchild > 0) 
-                {
+            decrementChild: function (index) {
+                if (this.cartArray[index].countchild > 0) {
                     this.cartArray[index].countchild--;
                 }
-                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0)
-                {
-                    this.cartArray.splice(index,1);
+                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                    this.cartArray.splice(index, 1);
                 }
-                    },
-            decrementAdult: function (index){
-                if (this.cartArray[index].countadult > 0) 
-                {
+            },
+            decrementAdult: function (index) {
+                if (this.cartArray[index].countadult > 0) {
                     this.cartArray[index].countadult--;
                 }
-                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) 
-                {
-                    this.cartArray.splice(index,1);
+                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                    this.cartArray.splice(index, 1);
                 }
-                    },
+            },
         },
         computed: {
-            subtotalChild: function(){
-                var a=0;
-                for (let i = 0; i < this.cartArray.length; i++)
-                {
+            subtotalChild: function () {
+                var a = 0;
+                for (let i = 0; i < this.cartArray.length; i++) {
                     a += this.cartArray[i].countchild;
-                    console.log('a: '+ a );
-                    console.log('aray length: '+ this.cartArray.length );
-                   
+                    console.log('a: ' + a);
+                    console.log('aray length: ' + this.cartArray.length);
+
                 }
-                return a*this.priceChild 
+                return a * this.priceChild
 
             },
-            subtotalAdult: function(){
-                var a=0;
-                for (let i = 0; i < this.cartArray.length; i++)
-                {
+            subtotalAdult: function () {
+                var a = 0;
+                for (let i = 0; i < this.cartArray.length; i++) {
                     a += this.cartArray[i].countadult;
-                    
+
                 }
-                return  a*this.priceAdult 
+                return a * this.priceAdult
             },
         }
-        })// END Vue root
+    })// END Vue root
 
 
     console.log('END VUE');
 
-    })
+})
