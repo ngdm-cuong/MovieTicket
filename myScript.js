@@ -82,7 +82,9 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             movies: movieArray,
             cartItem:{'itemName':'default',child:0,adult:0},
             cartArray:[],
-
+            priceAdult:6.99,
+            priceChild:3.99,
+            subtotal:0,
             counter:0
         }, // End vuedata
 
@@ -123,22 +125,44 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 console.log('index: '  +index);
             },
             decrementChild: function (index){
-                if (this.cartArray[index].countchild > 0) {
+                if (this.cartArray[index].countchild > 0) 
+                {
                     this.cartArray[index].countchild--;
-                        }
-                        if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                }
+                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0)
+                {
                     this.cartArray.splice(index,1);
                 }
                     },
             decrementAdult: function (index){
-                        if (this.cartArray[index].countadult > 0) {
+                if (this.cartArray[index].countadult > 0) 
+                {
                     this.cartArray[index].countadult--;
-                        }
-                        if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                }
+                if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) 
+                {
                     this.cartArray.splice(index,1);
                 }
-                    } 
+                    },
         },
+        computed: {
+            subtotalChild: function(){
+                let a;
+                for (let i = 0; i < this.cartArray.length; i++)
+                {
+                    a =+ this.cartArray[i].countchild;
+                    return (a*this.priceChild) 
+                }
+            },
+            subtotalAdult: function(){
+                let a;
+                for (let i = 0; i < this.cartArray.length; i++)
+                {
+                    a =+ this.cartArray[i].countadult;
+                    return (a*this.priceAdult) 
+                }
+            },
+        }
         })// END Vue root
 
 

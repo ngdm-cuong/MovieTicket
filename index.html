@@ -38,9 +38,9 @@
                             <tr v-for= " (data, index ) in cartArray">
                                         <template>
                                                 <td>{{data.itemName}}</td>
-                                                <td>{{data.countchild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
-                                                <td>{{data.countadult}}<button @click ="decrementAdult( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
-                                                <td></td>
+                                                <td>{{data.countchild}} x {{priceChild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td>{{data.countadult}} x {{priceAdult}}<button @click ="decrementAdult( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td>{{data.countchild*priceChild + data.countadult*priceAdult }}</td> <!-- Subtotal of each row -->       
                                                 <td><button @click ="remove( index)" type="button" class="btn btn-primary btn-sm">Remove</button></td>
                                         </template>
                                 
@@ -48,13 +48,21 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td>Children Subtotal</td>
-                                <td>Money</td>
+
+                                <td>{{subtotalChild}}</td>
                                 <td></td>
                             </tr>
                             <tr>
+                                    <td colspan="2"></td>
+
+                                    <td>Adult Subtotal</td>
+                                    <td>{{subtotalAdult}}</td>
+                                    <td></td>
+                                </tr>
+                            <tr>
                                 <td colspan="2"></td>
                                 <td>Total</td>
-                                <td>Money</td>
+                                <td>{{subtotalAdult + subtotalChild}}</td>
                                 <td></td>
                             </tr> 
                         </tbody>
