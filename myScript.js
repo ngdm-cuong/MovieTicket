@@ -156,7 +156,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                     console.log('aray length: '+ this.cartArray.length );
                    
                 }
-                return Math.round(a*this.priceChild * 100) / 100
+                return a*this.priceChild 
 
             },
             subtotalAdult: function(){
@@ -166,7 +166,7 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                     a += this.cartArray[i].countadult;
                     
                 }
-                return  Math.round(a*this.priceChild * 100) / 100
+                return  a*this.priceAdult 
             },
         }
         })// END Vue root
