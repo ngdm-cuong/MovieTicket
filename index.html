@@ -12,24 +12,24 @@
     <title>FINAL PROJECT</title>
 </head>
 <body>
-    <div class = "container">
+    <div class = "container border">
         <div id = "app"> 
             <header>
                     <h1 class="shadow-lg p-3 mb-5 bg-dark rounded  white text-center" style = "color:white;">Movie Ticket Window Shopping Site</h1>
             </header>
-                <div class = "card-deck justify-content-center " id = "cardDeck">
+                <div class = "card-deck justify-content-center" id = "cardDeck">
                     <div v-for="(movie, index) in movies">
                            <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview" ></acard>
                     </div>
                 </div>
-            <template v-if= "cartArray.length !==0 ">
+            <template class ="justify-content-center" v-if= "cartArray.length !==0 ">
                 <h2>{{ticketsummary}}</h2>
                 <table class="table table-striped">
                         <thead>
                             <tr>
                             <th scope="col">Movie</th>
                             <th scope="col">Children's Tickets</th>
-                            <th scope="col">Adult Tickets</th>s
+                            <th scope="col">Adult Tickets</th>
                             <th scope="col">Subtotal</th>   
                             <th scope="col">Button</th>
                             </tr>
