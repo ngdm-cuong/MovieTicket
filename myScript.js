@@ -1,4 +1,4 @@
-var movieRange = 6;
+var movieRange = 3;
 
 var movieArray=[]; 
 var tkbox =false;
