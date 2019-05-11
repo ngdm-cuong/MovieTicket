@@ -14,13 +14,14 @@
 <body>
     <div class = "container">
         <div id = "app"> 
-            <div class = "row">
-                <div class = "card-deck" id = "cardDeck">
+            <header>
+                    <h1 class="shadow-lg p-3 mb-5 bg-dark rounded  white text-center" style = "color:white;">Movie Ticket Window Shopping Site</h1>
+            </header>
+                <div class = "card-deck justify-content-center " id = "cardDeck">
                     <div v-for="(movie, index) in movies">
                            <acard :name= "movie.title" :img= "movie.poster " :ov="movie.overview" ></acard>
                     </div>
-                </div>    
-            </div>
+                </div>
             <template v-if= "cartArray.length !==0 ">
                 <h2>{{ticketsummary}}</h2>
                 <table class="table table-striped">
@@ -28,7 +29,7 @@
                             <tr>
                             <th scope="col">Movie</th>
                             <th scope="col">Children's Tickets</th>
-                            <th scope="col">Adult Tickets</th>
+                            <th scope="col">Adult Tickets</th>s
                             <th scope="col">Subtotal</th>   
                             <th scope="col">Button</th>
                             </tr>
@@ -38,7 +39,7 @@
                             <tr v-for= " (data, index ) in cartArray">
                                 <template>
                                     <td>{{data.itemName}}</td>
-                                    <td v-if= "data.countchild !==0 ">{{data.countchild}} x {{priceChild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
+                                    <td v-if= "data.countchild !==0 ">{{data.countchild}} x {{priceChild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm" >-</button></td>
                                     <td v-else></td> <!-- Show an empty col if no ticket has been clicked yet -->       
 
                                     <td v-if= "data.countadult !==0 ">{{data.countadult}} x {{priceAdult}}<button @click ="decrementAdult( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
@@ -73,6 +74,9 @@
                         
                 </table>
             </template>
+            <footer>
+                    <h1 class="shadow-lg p-3 mb-5 bg-dark rounded  white text-center" style = "color:white;">Cuong Nguyen</h1>
+            </footer>
         </div>
 <!-- //////////////////////////////////// -->       
     </div>

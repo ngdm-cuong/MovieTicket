@@ -1,4 +1,4 @@
-var movieRange = 3;
+var movieRange = 6;
 
 var movieArray=[]; 
 var tkbox =false;
@@ -37,40 +37,27 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 console.log(this.cartItem.itemName+' Count Child: ' +this.cartItem.countchild);
                 console.log(this.cartItem.itemName+' Count Adult: ' +this.cartItem.countadult);
 
-            },
-            // createcartadult: function(movietitle,countadult){
-            //     this.$parent.createcart(movietitle,countadult);
-            //     this.$parent.cartItem = {'itemName':movietitle, child:countadult};
-
-            //     console.log('Adult: '+this.countadult);
-            // }
-            
-            
-            
+            }
         }, // End vue component method
-        template: `<div>
-                        <div class="col-sm">
-                            <div class="card" style="width: 18rem;">
-                                <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
-                                <div class="card-body">
-                                    <button
-                                    class="btn btn-primary" 
-                                    @click=" cartItem.itemName = name; createcart1(name,cartItem.countchild++,0); created = 1" 
-                                    >Child Ticket</button>  
+        template: `
+                <div class="card" style="width: 18rem;">
+                    <img v-bind:src='img' class="card-img-top" v-bind:alt='name'>
+                    <div class="card-body ">
+                        <button
+                        class="btn btn-primary" 
+                        @click=" cartItem.itemName = name; createcart1(name,cartItem.countchild++,0); created = 1" 
+                        >Child Ticket</button>  
 
-                                    <button  
-                                    class="btn btn-primary" 
-                                    @click=" cartItem.itemName = name; createcart1(name,0,cartItem.countadult++); created = 1" 
-                                    >Adult Ticket</button>
-                                    <p></p>
-                                    <h5 class="card-title"> {{name}}</h5>
-                                    <p class="card-text">{{ov}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table table-striped" id = 'cart' >
-                        </div>
+                        <button  
+                        class="btn btn-primary" 
+                        @click=" cartItem.itemName = name; createcart1(name,0,cartItem.countadult++); created = 1" 
+                        >Adult Ticket</button>
+                        <p></p>
+                        <h5 class="card-title"> {{name}}</h5>
+                        <p class="card-text">{{ov}}</p>
                     </div>
+                </div>
+
                 `
     }) //END VUE.Component
 
