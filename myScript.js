@@ -147,19 +147,21 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         },
         computed: {
             subtotalChild: function(){
-                let a;
+                let a=0;
                 for (let i = 0; i < this.cartArray.length; i++)
                 {
                     a =+ this.cartArray[i].countchild;
-                    return (a*this.priceChild) 
+                    console.log('a: '+ a );
+                    console.log('aray length: '+ this.cartArray.length );
+                    return a*this.priceChild.toFixed(2)
                 }
             },
             subtotalAdult: function(){
-                let a;
+                let a=0;
                 for (let i = 0; i < this.cartArray.length; i++)
                 {
                     a =+ this.cartArray[i].countadult;
-                    return (a*this.priceAdult) 
+                    return a*this.priceAdult.toFixed(2) 
                 }
             },
         }
