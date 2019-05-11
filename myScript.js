@@ -82,10 +82,11 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
             movies: movieArray,
             cartItem:{'itemName':'default',child:0,adult:0},
             cartArray:[],
+            subtotal:[],
             priceAdult:6.99,
             priceChild:3.99,
-            subtotal:0,
-            counter:0
+
+            
         }, // End vuedata
 
         methods:{
@@ -147,22 +148,25 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
         },
         computed: {
             subtotalChild: function(){
-                let a=0;
+                var a=0;
                 for (let i = 0; i < this.cartArray.length; i++)
                 {
-                    a =+ this.cartArray[i].countchild;
+                    a += this.cartArray[i].countchild;
                     console.log('a: '+ a );
                     console.log('aray length: '+ this.cartArray.length );
-                    return a*this.priceChild.toFixed(2)
+                   
                 }
+                return Math.round(a*this.priceChild * 100) / 100
+
             },
             subtotalAdult: function(){
-                let a=0;
+                var a=0;
                 for (let i = 0; i < this.cartArray.length; i++)
                 {
-                    a =+ this.cartArray[i].countadult;
-                    return a*this.priceAdult.toFixed(2) 
+                    a += this.cartArray[i].countadult;
+                    
                 }
+                return  Math.round(a*this.priceChild * 100) / 100
             },
         }
         })// END Vue root

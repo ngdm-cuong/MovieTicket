@@ -40,7 +40,7 @@
                                     <td>{{data.itemName}}</td>
                                     <td>{{data.countchild}} x {{priceChild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
                                     <td>{{data.countadult}} x {{priceAdult}}<button @click ="decrementAdult( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
-                                    <td>{{data.countchild*priceChild.toFixed(2) + data.countadult*priceAdult.toFixed(2) }}</td> <!-- Subtotal of each row -->       
+                                    <td>{{ (data.countchild*priceChild + data.countadult*priceAdult).toFixed(2) }}</td> <!-- Subtotal of each row -->       
                                     <td><button @click ="remove( index)" type="button" class="btn btn-primary btn-sm">Remove</button></td>
                                 </template>
                                 
@@ -62,7 +62,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td>Total</td>
-                                <td>{{subtotalAdult + subtotalChild}}</td>
+                                <td>{{(subtotalAdult + subtotalChild).toFixed(2)}}</td>
                                 <td></td>
                             </tr> 
                         </tbody>
