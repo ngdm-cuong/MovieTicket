@@ -36,17 +36,13 @@
 
                         <tbody>
                             <tr v-for= " (data, index ) in cartArray">
-                                <!-- <div v-for=" (movie, index) in movies "> -->
-                                        <!-- <template v-if=" movie.adult !=0 || movie.child !=0"> -->
                                         <template>
                                                 <td>{{data.itemName}}</td>
-                                                <td>{{data.countchild}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
-                                                <td>{{data.countadult}}<button type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td>{{data.countchild}}<button @click ="decrementChild( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
+                                                <td>{{data.countadult}}<button @click ="decrementAdult( index)" type="button" class="btn btn-primary btn-sm">-</button></td>
                                                 <td></td>
                                                 <td><button @click ="remove( index)" type="button" class="btn btn-primary btn-sm">Remove</button></td>
                                         </template>
-                                        
-                                <!-- <div> -->
                                 
                             </tr>
                             <tr>
@@ -65,55 +61,8 @@
                         
                 </table>
             </template>
-            
-
-
-            
         </div>
-<!-- //////////////////////////////////// -->
-        <!-- <div>   
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">Movie</th>
-                    <th scope="col">Children's Tickets</th>
-                    <th scope="col">Adult Tickets</th>
-                    <th scope="col">Subtotal</th>   
-                    <th scope="col">Button</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Mark</td>
-                        <td><button class="btn btn-success">Remove</button></td>
-                    </tr> 
-                    <tr><td colspan="5"></td></tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Adult Subtotal</td>
-                        <td>Money</td>
-                        <td></td>
-                    </tr> 
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Children Subtotal</td>
-                        <td>Money</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>Total</td>
-                        <td>Money</td>
-                        <td></td>
-                    </tr> 
-                </tbody>
-            </table>
-
-        </div> -->
-
+<!-- //////////////////////////////////// -->       
     </div>
     <script src = "myScript.js"></script>
 </body>

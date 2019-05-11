@@ -116,12 +116,28 @@ $.getJSON("https://api.themoviedb.org/3/movie/now_playing?api_key=e572ec9de5afe4
                 // console.log(moviename);
             },
             remove: function (index){
-                this.cartArray[index].child = 0;
-                this.cartArray[index].adult = 0;
+                this.cartArray[index].countchild = 0;
+                this.cartArray[index].countadult = 0;
 
                 this.cartArray.splice(index,1);
                 console.log('index: '  +index);
-            }   
+            },
+            decrementChild: function (index){
+                if (this.cartArray[index].countchild > 0) {
+                    this.cartArray[index].countchild--;
+                        }
+                        if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                    this.cartArray.splice(index,1);
+                }
+                    },
+            decrementAdult: function (index){
+                        if (this.cartArray[index].countadult > 0) {
+                    this.cartArray[index].countadult--;
+                        }
+                        if (this.cartArray[index].countadult == 0 && this.cartArray[index].countchild == 0) {
+                    this.cartArray.splice(index,1);
+                }
+                    } 
         },
         })// END Vue root
 
